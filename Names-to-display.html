@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<body onload="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,500&display=swap" rel="stylesheet">
+      <button id="unmuteButton"><canvas></canvas></button>
+   
+
+    <div class="absolute-center" id="meek">
+        <style>
+            body {
+                width: 100vw;
+                height: 100vh;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+                background: url("https://i.ibb.co/GQF527w/glass-bg-min.jpg");
+                background-size: cover;
+            }
+            
+            
+            div.absolute-center {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                opacity: 1;
+                visibility: visible;
+                transition: all .5s;
+            }
+            button {
+            width: 100%;
+            top: 0%;
+            left: 0%;
+            height: 100%;
+            border: 0px;
+            background-color: transparent;
+            cursor: default;
+            -webkit-tap-highlight-color: transparent;
+            }
+            
+            canvas {
+                transition: 1s;
+            }
+        </style>
+        
+        </div>
+        <div>
+        <audio id="audio" autoplay loop><source src="https://media1.vocaroo.com/mp3/1a78DHXHcbxj" type="audio/mp3"></audio>
+    </div>
+
+
+    <script>
+
+        // audio section
+
+       var audio = document.getElementById("audio");
+       audio.autoplay = true;
+       audio.volume = 0.4;
+       audio.onloadstart = function() {
+          audio.play();
+     };
+
+
+     
+     // work around for chrome
+     // Police was updated by chrome ! You need human intaraction. So, I turned the Whole screen to a button and entered the canves inside it !
+     // Dual audio won't be played in FireFox as the First function is enough for that !  
+  
+    unmuteButton.addEventListener('click', function() {
+    audio.muted = false;
+    audio.volume = 0.4;		// It was hurting my ears :P, So, be gentel at 0.4 !
+    audio.play();
+  });
+  
+      
+
+	// Too much alert.. So, MeEk_0 disabled it for good !
+	// Don't wanna use cache !
+
+        // alert section on load
+
+        // if (window.screen.width * window.devicePixelRatio <= 1100) {
+        //     alert("?Click/touch once if you are in CHROME ! \\n?? Touch The screen to adjust view or use Desktop for better view!\\n\\n??Desktop mode won't help !  \\n\\n?Try to refresh the page if color isn't suitable for finding 'YOUR NAME' ! \\n\\n\\n\\n\\n�?Team RAVEN");
+        // } else if (window.screen.width * window.devicePixelRatio > 1100) {
+        //     alert("?Click/touch once if you are in CHROME ! \\n?Try to refresh the page if color isn't suitable for finding your name ! \\n\\n\\n\\n�?Team RAVEN");
+        // }
+
+        /*VARIABLES*/
+
+        canvas = document.getElementsByTagName('canvas')[0];
+        canvas.width = document.body.clientWidth;
+        canvas.height = document.body.clientHeight;
+
+        var ctx = canvas.getContext('2d');
+
+
+
+
+        // random colours Dark
+
+        function generateRandomColor() {
+            var allowed = "ABCDEF0123456789",
+                color = "#";
+
+            while (color.length < 7) {
+                color += allowed.charAt(Math.floor((Math.random() * 16) + 1));
+            }
+            return color;
+        }
+
+
+
+	// Color was too dark to see. So, I commented that out !
+	// Use the Upper one !
+
+        // function generateRandomColor() {
+        //     var letters = '0123456789ABCDEF';		
+        //     var color = '#';
+        //     for (var i = 0; i < 6; i++) {
+        //         color += letters[Math.floor(Math.random() * 16)];
+        //     }
+        //     return color;
+        // }
+
+
+
+        // random color light
+
+        function getRandomColorLight() {
+            var letters = 'BCDEF'.split('');
+            var colorlight = '#';
+            for (var i = 0; i < 6; i++) {
+                colorlight += letters[Math.floor(Math.random() * letters.length)];
+            }
+            return colorlight;
+        }
+
+
+
+
+        //possible characters that will appear
+
+        var characterList = ["NABILA", "EMON", "MIM", "SEFAYET", "TAMIM", "TANVIR", "SIAM", "RAHMAN", "FOYEZ", "OMAR", "RABBY", "ASIF", "MARZUKA", "RAIHAN", "SHIFAT", "FAIRINA", "NUR", "KEYA", "SOSCHO", "AKASH", "HASIBUL", "SHOVON", "KHAYER", "MUHIMENUL", "SHARNA", "HABIBOUR", "SHUVO", "JAVED", "NISSAN", "ZABED", "BARKULLAH", "MUNNA", "NAHID", "MOLOY", "SHANTO", "FARIHA", "REZWANA", "FARUK", "RIDWANUL", "RAFID", "NUHIN", "TASREFUL", "NAIM", "ALVE", "MUFTI", "HABIBUR", "NAVEED", "JEASMIN", "RAFI", "DURJOY", "PARTHA", "TAHOMID", "SHAKIBUL", "NAFEES", "PROTHOM", "JARIN", "ANON", "JOY", "FERDAUS", "SHEIKH", "ANIKA", "TAZKIYAH", "RASHEDUL", "TASIN", "SUDAD", "ASHRAF", "SAIKAT", "TONMOY", "MAISHA", "SUFYAN", "DRUBO", "FARZANA", "SAIKOT", "ANAMIKA", "MAHIA", "HAFSA", "SHOHAG", "SAKEEF", "TAHMID", "SHAJU", "TAMEEM", "MOWMITA", "USHNA", "RIFAT", "TANJIM", "SAAD", "JAHIN", "PUJA", "JERIN", "RAIYAN", "REAYD", "AZIZUL", "MASUD", "NEHA", "JUBAIR", "SAJIDUR", "FAHEDUL", "SABBIR", "SULTANA", "RAHAMAN", "DRISTY", "AURIN", "BIVA", "MARUF", "SEAM", "ZAHAR", "SHAREAR", "ABIR", "SAMIR", "GOURAB", "SHAKHAWAT", "THEPO", "TAJUL", "DIPU", "NILOY", "AYON", "NAHIAN", "REAZ", "RAYNA", "RAAD", "TAWHID", "JUBAYER", "SADIA", "LATIFUR", "AFIA", "RAHAT", "HABIBA", "KAZI", "ZANNAT", "ALOK", "RIZVI", "VABNA", "ALTAF", "SHOIKAT", "SUVO", "SHAFI", "PRITOM", "FAHIM", "MYSHA", "SORNA", "SAJEED", "MITHU", "ANANYA", "ANIA", "SAGAR", "ATIA", "MEHER", "ASHIKUR", "ARAFAT", "BISHAL", "NAFI", "LABONY", "TOUHIDUL", "MUSTAIN", "ABDULLA", "MASUM", "AKON", "ZIHAN", "SADIK", "MAHBUBUL", "ABIDUR", "NAFIS", "RAFIN", "TASFI", "SALEHEEN", "TULI", "KAPIL"];
+        
+
+	//stocks possible character attributes
+        var layers = {
+            n: 6, //number of layers
+            letters: [90, 41, 25, 10, 5], //letters per layer (starting from the deepest layer)
+            coef: [0.1, 0.2, 0.4, 0.6, 0.9], //how much the letters move from the mouse (starting from the deepest layer)
+            size: [16, 22, 36, 40, 46], //font size of the letters (starting from the deepest layer)
+            color: [generateRandomColor(), generateRandomColor(), getRandomColorLight(), getRandomColorLight()],
+            font: 'Ubuntu' //font family (of every layer)
+        };
+
+
+
+
+        var characters = [];
+        var mouseX = document.body.clientWidth / 2;
+        var mouseY = document.body.clientHeight / 2;
+
+        var rnd = {
+            btwn: function(min, max) {
+                return Math.floor(Math.random() * (max - min) + min);
+            },
+            choose: function(list) {
+                return list[rnd.btwn(0, list.length)];
+            }
+        };
+
+
+
+        /*LETTER DRAWING*/
+
+        function drawLetter(char) {
+            ctx.font = char.size + 'px ' + char.font;
+            ctx.fillStyle = char.color;
+
+            var x = char.posX + (mouseX - canvas.width / 2) * char.coef;
+            var y = char.posY + (mouseY - canvas.height / 2) * char.coef;
+
+            ctx.fillText(char.char, x, y);
+        }
+
+
+
+        /*ANIMATION*/
+
+        document.onmousemove = function(ev) {
+            mouseX = ev.pageX - canvas.offsetLeft;
+            mouseY = ev.pageY - canvas.offsetTop;
+
+            if (window.requestAnimationFrame) {
+                requestAnimationFrame(update);
+            } else {
+                update();
+            }
+        };
+
+        document.ontouch = function(ev) {
+            mouseX = ev.pageX - canvas.offsetLeft;		// Used "ontouch" because "ontouchmove" was causing sudden display void problem !
+            mouseY = ev.pageY - canvas.offsetTop;
+
+            if (window.requestAnimationFrame) {
+                requestAnimationFrame(update);
+            } else {
+                update();
+            }
+        };
+
+        function update() {
+            clear();
+            render();
+        }
+
+        function clear() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function render() {
+            for (var i = 0; i < characters.length; i++) {
+                drawLetter(characters[i]);
+            }
+        }
+
+
+
+
+
+
+
+        /*INITIALIZE*/
+
+        function createLetters() {
+            for (var i = 0; i < layers.n; i++) {
+                for (var j = 0; j < layers.letters[i]; j++) {
+
+                    var character = rnd.choose(characterList);
+                    var x = rnd.btwn(0, canvas.width);
+                    var y = rnd.btwn(0, canvas.height);
+
+                    characters.push({
+                        char: character,
+                        font: layers.font,
+                        size: layers.size[i],
+                        color: layers.color[i],
+                        layer: i,
+                        coef: layers.coef[i],
+                        posX: x,
+                        posY: y
+                    });
+
+                }
+            }
+        }
+
+        createLetters();
+        update();
+
+
+
+        /*REAJUST CANVAS AFTER RESIZE*/
+
+        window.onresize = function() {
+            location.reload();
+        };
+
+        document.getElementById('close').onclick = function() {
+            this.parentElement.style.visibility = 'hidden';
+            this.parentElement.style.opacity = '0';
+        }
+    </script>
+
+</body>
+
+</html>
