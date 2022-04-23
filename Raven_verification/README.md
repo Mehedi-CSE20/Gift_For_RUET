@@ -1,5 +1,5 @@
 # RAVEN VERIFICATION
 [*SITE*](https://ruet-cse20.herokuapp.com)
 
-__A verification and Telegram private group invite url sender__
-__Also my first project on python flask__
+_A verification and Telegram private group invite url sender. _
+_Also my first project on python flask_
