@@ -1,4 +1,4 @@
-[*TSC*](https://tsc-ruet.herokuapp.com)
+[*TSC SITE*](https://tsc-ruet.herokuapp.com)
 
 <details>
   <summary><b>For Dev</b></summary>
